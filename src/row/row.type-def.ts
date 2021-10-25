@@ -3,8 +3,8 @@ import {gql} from 'apollo-server';
 export const rowTypeDef = gql`
   type Row {
     id: ID!
-    name: String!
     matrix: Matrix!
+    name: String!
   }
 
   extend type Query {

@@ -8,6 +8,7 @@ export const matrixResolvers = {
 		name: ({name}: Matrix) => name,
 		description: ({description}: Matrix) => description,
 		rows: ({id}: Matrix) => prisma.matrix.findUnique({where: {id}}).rows(),
+		columns: ({id}: Matrix) => prisma.matrix.findUnique({where: {id}}).columns(),
 	},
 	Query: {
 		matrices: () => prisma.matrix.findMany(),

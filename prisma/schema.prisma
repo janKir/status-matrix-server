@@ -11,10 +11,11 @@ datasource db {
 }
 
 model Matrix {
-  id          String  @id @default(uuid()) @db.Uuid
-  name        String  @unique @db.VarChar(64)
-  description String? @db.VarChar(500)
+  id          String   @id @default(uuid()) @db.Uuid
+  name        String   @unique @db.VarChar(64)
+  description String?  @db.VarChar(500)
   rows        Row[]
+  columns     Column[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -33,4 +34,22 @@ model Row {
 
   @@unique([name, matrixId])
   @@map("row")
+}
+
+model Column {
+  id       String @id @default(uuid()) @db.Uuid
+  name     String @db.VarChar(64)
+  matrixId String @db.Uuid
+  matrix   Matrix @relation(fields: [matrixId], references: [id])
+  position Int    @default(autoincrement())
+
+  startDate DateTime?
+  endDate   DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([name, matrixId])
+  @@unique([position, matrixId])
+  @@map("column")
 }
