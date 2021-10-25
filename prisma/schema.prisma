@@ -11,23 +11,27 @@ datasource db {
 }
 
 model Matrix {
-  id          String   @id @default(uuid()) @db.Uuid
-  name        String   @unique @db.VarChar(64)
-  description String?  @db.VarChar(500)
+  id          String      @id @default(uuid()) @db.Uuid
+  name        String      @unique @db.VarChar(64)
+  description String?     @db.VarChar(500)
   rows        Row[]
   columns     Column[]
+  values      Value[]
+  cellEntries CellEntry[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
 
   @@map("matrix")
 }
 
 model Row {
-  id       String @id @default(uuid()) @db.Uuid
-  name     String @db.VarChar(64)
-  matrixId String @db.Uuid
-  matrix   Matrix @relation(fields: [matrixId], references: [id])
+  id          String      @id @default(uuid()) @db.Uuid
+  name        String      @db.VarChar(64)
+  matrixId    String      @db.Uuid
+  matrix      Matrix      @relation(fields: [matrixId], references: [id])
+  cellEntries CellEntry[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -37,11 +41,12 @@ model Row {
 }
 
 model Column {
-  id       String @id @default(uuid()) @db.Uuid
-  name     String @db.VarChar(64)
-  matrixId String @db.Uuid
-  matrix   Matrix @relation(fields: [matrixId], references: [id])
-  position Int    @default(autoincrement())
+  id          String      @id @default(uuid()) @db.Uuid
+  name        String      @db.VarChar(64)
+  matrixId    String      @db.Uuid
+  matrix      Matrix      @relation(fields: [matrixId], references: [id])
+  position    Int         @default(autoincrement())
+  cellEntries CellEntry[]
 
   startDate DateTime?
   endDate   DateTime?
@@ -51,5 +56,39 @@ model Column {
 
   @@unique([name, matrixId])
   @@unique([position, matrixId])
+  @@unique([id, matrixId])
   @@map("column")
+}
+
+model Value {
+  id          String      @id @default(uuid()) @db.Uuid
+  name        String      @db.VarChar(64)
+  color       String      @db.VarChar(32)
+  matrixId    String      @db.Uuid
+  matrix      Matrix      @relation(fields: [matrixId], references: [id])
+  cellEntries CellEntry[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([name, matrixId])
+  @@map("value")
+}
+
+model CellEntry {
+  id       String @id @default(uuid()) @db.Uuid
+  matrixId String @db.Uuid
+  matrix   Matrix @relation(fields: [matrixId], references: [id])
+  rowId    String @db.Uuid
+  row      Row    @relation(fields: [rowId], references: [id])
+  columnId String @db.Uuid
+  column   Column @relation(fields: [columnId], references: [id])
+  valueId  String @db.Uuid
+  value    Value  @relation(fields: [valueId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([rowId, columnId, matrixId])
+  @@map("cellEntry")
 }
