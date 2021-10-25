@@ -1,6 +1,6 @@
 import {gql} from 'apollo-server';
 
-export const matrixTypeDef = gql`
+export const rowTypeDef = gql`
   type Row {
     id: ID!
     name: String!

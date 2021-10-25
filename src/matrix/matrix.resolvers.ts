@@ -1,27 +1,27 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import {matrices} from '../database';
+import {prisma} from '../database';
 import {Matrix} from './matrix.interface';
 
 export const matrixResolvers = {
 	Matrix: {
-		id: (parent: Matrix) => parent.id,
-		name: (parent: Matrix) => parent.name,
-		description: (parent: Matrix) => parent.description,
+		id: ({id}: Matrix) => id,
+		name: ({name}: Matrix) => name,
+		description: ({description}: Matrix) => description,
+		rows: ({id}: Matrix) => prisma.matrix.findUnique({where: {id}}).rows(),
 	},
 	Query: {
-		matrices: () => matrices,
-		matrix: (parent, args) => matrices.find((matrix) => matrix.id === Number(args.id)),
+		matrices: () => prisma.matrix.findMany(),
+		matrix: (parent, {id}: Matrix) => prisma.matrix.findFirst({
+			where: {id},
+		}),
 	},
 	Mutation: {
-		createMatrix: (parent, args: Matrix) => {
-			matrices.push({
-				id: matrices.length + 1,
-				name: args.name,
-				description: args.description,
-			});
-
-			return matrices[matrices.length - 1];
-		},
+		createMatrix: (parent, {name, description}: Matrix) => prisma.matrix.create({
+			data: {
+				name,
+				description,
+			},
+		}),
 	},
 };
 

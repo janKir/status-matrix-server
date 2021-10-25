@@ -1,5 +1,5 @@
 export interface Matrix {
-	id: number;
+	id: string; // Uuid
 	name: string;
 	description?: string;
 }

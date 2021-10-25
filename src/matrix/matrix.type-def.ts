@@ -5,6 +5,7 @@ export const matrixTypeDef = gql`
     id: ID!
     name: String!
     description: String
+    rows: [Row!]!
   }
 
   extend type Query {

@@ -1,7 +1,9 @@
-import {Matrix} from '../matrix/matrix.interface';
-
 export interface Row {
-	id: number;
+	id: string; // Uuid
 	name: string;
-	matrix: Matrix;
+}
+
+export interface CreateRowInput {
+	name: string;
+	matrixId: string;
 }
