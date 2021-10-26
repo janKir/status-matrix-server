@@ -6,6 +6,7 @@ export const valueTypeDef = gql`
     matrix: Matrix!
     name: String!
     color: String!
+    cellEntries: [CellEntry!]!
   }
 
   extend type Query {

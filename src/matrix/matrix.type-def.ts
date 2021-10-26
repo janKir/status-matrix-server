@@ -7,6 +7,8 @@ export const matrixTypeDef = gql`
     description: String
     rows: [Row!]!
     columns: [Column!]!
+    values: [Value!]!
+    cellEntries: [CellEntry!]!
   }
 
   extend type Query {

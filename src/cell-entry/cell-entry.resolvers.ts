@@ -18,9 +18,9 @@ export const cellEntryResolvers = {
 		createCellEntry: (parent, {matrixId, columnId, rowId, valueId}: CreateCellEntryInput) => prisma.cellEntry.create({
 			data: {
 				matrix: {connect: {id: matrixId}},
-				column: {connect: {id: columnId}},
-				row: {connect: {id: rowId}},
-				value: {connect: {id: valueId}},
+				column: {connect: {id_matrixId: {id: columnId, matrixId}}},
+				row: {connect: {id_matrixId: {id: rowId, matrixId}}},
+				value: {connect: {id_matrixId: {id: valueId, matrixId}}},
 			},
 		}),
 	},

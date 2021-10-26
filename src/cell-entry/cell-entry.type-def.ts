@@ -15,7 +15,7 @@ export const cellEntryTypeDef = gql`
   }
 
   extend type Mutation {
-    createCellEntry(matrixId: ID!, rowId: ID!, columnId: ID!, valueId: ID!): Row!
+    createCellEntry(matrixId: ID!, rowId: ID!, columnId: ID!, valueId: ID!): CellEntry!
   }
 `;
 

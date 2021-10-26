@@ -1,5 +1,6 @@
 export interface Row {
 	id: string; // Uuid
+	matrixId: string;
 	name: string;
 }
 

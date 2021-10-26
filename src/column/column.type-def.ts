@@ -8,6 +8,7 @@ export const columnTypeDef = gql`
     name: String!
     startDate: String
     endTime: String
+    cellEntries: [CellEntry!]!
   }
 
   extend type Query {

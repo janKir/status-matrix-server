@@ -1,5 +1,6 @@
 export interface Column {
 	id: string;
+	matrixId: string;
 	position: number;
 	name: string;
 	startDate?: string;

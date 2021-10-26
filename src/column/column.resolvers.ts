@@ -7,7 +7,8 @@ export const columnResolvers = {
 		id: ({id}: Column) => id,
 		name: ({name}: Column) => name,
 		position: ({position}: Column) => position,
-		matrix: ({id}: Column) => prisma.column.findUnique({where: {id}}).matrix(),
+		matrix: ({id, matrixId}: Column) => prisma.column.findUnique({where: {id_matrixId: {id, matrixId}}}).matrix(),
+		cellEntries: ({id, matrixId}: Column) => prisma.column.findUnique({where: {id_matrixId: {id, matrixId}}}).cellEntries(),
 	},
 	Query: {
 		columns: () => prisma.column.findMany(),
@@ -24,4 +25,3 @@ export const columnResolvers = {
 		}),
 	},
 };
-

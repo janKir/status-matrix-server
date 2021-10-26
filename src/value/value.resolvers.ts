@@ -7,6 +7,8 @@ export const valueResolvers = {
 		id: ({id}: Value) => id,
 		name: ({name}: Value) => name,
 		color: ({color}: Value) => color,
+		matrix: ({id, matrixId}: Value) => prisma.value.findUnique({where: {id_matrixId: {id, matrixId}}}).matrix(),
+		cellEntries: ({id, matrixId}: Value) => prisma.value.findUnique({where: {id_matrixId: {id, matrixId}}}).cellEntries(),
 	},
 	Query: {
 		values: () => prisma.value.findMany(),
@@ -24,4 +26,3 @@ export const valueResolvers = {
 		}),
 	},
 };
-

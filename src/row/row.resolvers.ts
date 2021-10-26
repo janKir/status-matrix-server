@@ -6,7 +6,8 @@ export const rowResolvers = {
 	Row: {
 		id: ({id}: Row) => id,
 		name: ({name}: Row) => name,
-		matrix: ({id}: Row) => prisma.row.findUnique({where: {id}}).matrix(),
+		matrix: ({id, matrixId}: Row) => prisma.row.findUnique({where: {id_matrixId: {id, matrixId}}}).matrix(),
+		cellEntries: ({id, matrixId}: Row) => prisma.row.findUnique({where: {id_matrixId: {id, matrixId}}}).cellEntries(),
 	},
 	Query: {
 		rows: () => prisma.row.findMany(),
