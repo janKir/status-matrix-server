@@ -29,7 +29,7 @@ model Matrix {
 model Row {
   id          String      @default(uuid()) @db.Uuid
   matrixId    String      @db.Uuid
-  matrix      Matrix      @relation(fields: [matrixId], references: [id])
+  matrix      Matrix      @relation(fields: [matrixId], references: [id], onDelete: Cascade)
   name        String      @db.VarChar(64)
   cellEntries CellEntry[]
 
@@ -44,7 +44,7 @@ model Row {
 model Column {
   id          String      @default(uuid()) @db.Uuid
   matrixId    String      @db.Uuid
-  matrix      Matrix      @relation(fields: [matrixId], references: [id])
+  matrix      Matrix      @relation(fields: [matrixId], references: [id], onDelete: Cascade)
   name        String      @db.VarChar(64)
   position    Int         @default(autoincrement())
   cellEntries CellEntry[]
@@ -64,7 +64,7 @@ model Column {
 model Value {
   id          String      @default(uuid()) @db.Uuid
   matrixId    String      @db.Uuid
-  matrix      Matrix      @relation(fields: [matrixId], references: [id])
+  matrix      Matrix      @relation(fields: [matrixId], references: [id], onDelete: Cascade)
   name        String      @db.VarChar(64)
   color       String      @db.VarChar(32)
   cellEntries CellEntry[]
@@ -80,13 +80,13 @@ model Value {
 model CellEntry {
   id       String @id @default(uuid()) @db.Uuid
   matrixId String @db.Uuid
-  matrix   Matrix @relation(fields: [matrixId], references: [id])
+  matrix   Matrix @relation(fields: [matrixId], references: [id], onDelete: Cascade)
   rowId    String @db.Uuid
-  row      Row    @relation(fields: [rowId, matrixId], references: [id, matrixId])
+  row      Row    @relation(fields: [rowId, matrixId], references: [id, matrixId], onDelete: Cascade)
   columnId String @db.Uuid
-  column   Column @relation(fields: [columnId, matrixId], references: [id, matrixId])
+  column   Column @relation(fields: [columnId, matrixId], references: [id, matrixId], onDelete: Cascade)
   valueId  String @db.Uuid
-  value    Value  @relation(fields: [valueId, matrixId], references: [id, matrixId])
+  value    Value  @relation(fields: [valueId, matrixId], references: [id, matrixId], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

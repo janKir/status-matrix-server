@@ -24,6 +24,8 @@ export const matrixTypeDef = gql`
 
   extend type Mutation {
     createMatrix(name: String!, description: String, rows: [RowInMatrixInput!], columns: [ColumnInMatrixInput!], values: [ValueInMatrixInput!]): Matrix!
+    updateMatrix(id: ID!, name: String, description: String): Matrix!
+    deleteMatrix(id: ID!): Matrix!
   }
 `;
 

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import {prisma} from '../database';
-import {Matrix} from './matrix.interface';
+import {DeleteMatrixInput, Matrix, UpdateMatrixInput} from './matrix.interface';
 
 export const matrixResolvers = {
 	Matrix: {
@@ -28,6 +28,11 @@ export const matrixResolvers = {
 				values: {create: values},
 			},
 		}),
+		updateMatrix: (parent, {id, name, description}: UpdateMatrixInput) => prisma.matrix.update({
+			where: {id},
+			data: {name, description},
+		}),
+		deleteMatrix: (parent, {id}: DeleteMatrixInput) => prisma.matrix.delete({where: {id}}),
 	},
 };
 

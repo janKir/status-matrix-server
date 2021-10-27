@@ -10,3 +10,13 @@ export interface Matrix {
 	columns?: CreateColumnInMatrixInput[];
 	values?: CreateValueInMatrixInput[];
 }
+
+export interface UpdateMatrixInput {
+	id: string;
+	name?: string;
+	description?: string;
+}
+
+export interface DeleteMatrixInput {
+	id: string;
+}
