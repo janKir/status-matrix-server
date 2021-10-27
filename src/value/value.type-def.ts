@@ -9,6 +9,11 @@ export const valueTypeDef = gql`
     cellEntries: [CellEntry!]!
   }
 
+  input ValueInMatrixInput {
+    name: String!
+    color: String!
+  }
+
   extend type Query {
     values: [Value!]!
     value(id: ID!): Value

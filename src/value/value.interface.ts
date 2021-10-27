@@ -10,3 +10,8 @@ export interface CreateValueInput {
 	name: string;
 	color: string;
 }
+
+export interface CreateValueInMatrixInput {
+	name: string;
+	color: string;
+}

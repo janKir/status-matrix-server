@@ -11,3 +11,7 @@ export interface CreateColumnInput {
 	name: string;
 	matrixId: string;
 }
+
+export interface CreateColumnInMatrixInput {
+	name: string;
+}

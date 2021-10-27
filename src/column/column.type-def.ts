@@ -11,6 +11,10 @@ export const columnTypeDef = gql`
     cellEntries: [CellEntry!]!
   }
 
+  input ColumnInMatrixInput {
+    name: String!
+  }
+
   extend type Query {
     columns: [Column!]!
     column(id: ID!): Column 

@@ -8,3 +8,7 @@ export interface CreateRowInput {
 	name: string;
 	matrixId: string;
 }
+
+export interface CreateRowInMatrixInput {
+	name: string;
+}

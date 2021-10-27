@@ -19,10 +19,13 @@ export const matrixResolvers = {
 		}),
 	},
 	Mutation: {
-		createMatrix: (parent, {name, description}: Matrix) => prisma.matrix.create({
+		createMatrix: (parent, {name, description, rows, columns, values}: Matrix) => prisma.matrix.create({
 			data: {
 				name,
 				description,
+				rows: {create: rows},
+				columns: {create: columns},
+				values: {create: values},
 			},
 		}),
 	},

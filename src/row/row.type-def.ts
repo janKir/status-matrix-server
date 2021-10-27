@@ -8,6 +8,10 @@ export const rowTypeDef = gql`
     cellEntries: [CellEntry!]!
   }
 
+  input RowInMatrixInput {
+    name: String!
+  }
+
   extend type Query {
     rows: [Row!]!
     row(id: ID!): Row

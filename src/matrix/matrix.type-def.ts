@@ -16,8 +16,14 @@ export const matrixTypeDef = gql`
     matrix(id: ID!): Matrix
   }
 
+
+
+
+
+
+
   extend type Mutation {
-    createMatrix(name: String!, description: String): Matrix!
+    createMatrix(name: String!, description: String, rows: [RowInMatrixInput!], columns: [ColumnInMatrixInput!], values: [ValueInMatrixInput!]): Matrix!
   }
 `;
 
