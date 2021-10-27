@@ -15,3 +15,12 @@ export interface CreateColumnInput {
 export interface CreateColumnInMatrixInput {
 	name: string;
 }
+
+export interface UpdateColumnInput {
+	id: string;
+	name?: string;
+}
+
+export interface DeleteColumnInput {
+	id: string;
+}

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import {prisma} from '../database';
-import {Column, CreateColumnInput} from './column.interface';
+import {Column, CreateColumnInput, DeleteColumnInput, UpdateColumnInput} from './column.interface';
 
 export const columnResolvers = {
 	Column: {
@@ -23,5 +23,10 @@ export const columnResolvers = {
 				},
 			},
 		}),
+		updateColumn: (parent, {id, name}: UpdateColumnInput) => prisma.column.update({
+			where: {id},
+			data: {name},
+		}),
+		deleteColumn: (parent, {id}: DeleteColumnInput) => prisma.column.delete({where: {id}}),
 	},
 };

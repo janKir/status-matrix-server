@@ -21,6 +21,8 @@ export const valueTypeDef = gql`
 
   extend type Mutation {
     createValue(matrixId: ID!, name: String!, color: String!): Value!
+    updateValue(id: ID!, name: String, color: String): Value!
+    deleteValue(id: ID!): Value!
   }
 `;
 

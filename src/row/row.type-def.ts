@@ -19,6 +19,8 @@ export const rowTypeDef = gql`
 
   extend type Mutation {
     createRow(matrixId: ID!, name: String!): Row!
+    updateRow(id: ID!, name: String): Row!
+    deleteRow(id: ID!): Row!
   }
 `;
 

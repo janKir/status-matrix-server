@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import {prisma} from '../database';
-import {CellEntry, CreateCellEntryInput} from './cell-entry.interface';
+import {CellEntry, CreateCellEntryInput, DeleteCellEntryInput, UpdateCellEntryInput} from './cell-entry.interface';
 
 export const cellEntryResolvers = {
 	CellEntry: {
@@ -23,6 +23,13 @@ export const cellEntryResolvers = {
 				value: {connect: {id_matrixId: {id: valueId, matrixId}}},
 			},
 		}),
+		updateCellEntry: (parent, {id, valueId}: UpdateCellEntryInput) => prisma.cellEntry.update({
+			where: {id},
+			data: {
+				value: {connect: {id: valueId}},
+			},
+		}),
+		deleteCellEntry: (parent, {id}: DeleteCellEntryInput) => prisma.cellEntry.delete({where: {id}}),
 	},
 };
 

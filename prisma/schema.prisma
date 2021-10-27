@@ -27,7 +27,7 @@ model Matrix {
 }
 
 model Row {
-  id          String      @default(uuid()) @db.Uuid
+  id          String      @unique @default(uuid()) @db.Uuid
   matrixId    String      @db.Uuid
   matrix      Matrix      @relation(fields: [matrixId], references: [id], onDelete: Cascade)
   name        String      @db.VarChar(64)
@@ -42,7 +42,7 @@ model Row {
 }
 
 model Column {
-  id          String      @default(uuid()) @db.Uuid
+  id          String      @unique @default(uuid()) @db.Uuid
   matrixId    String      @db.Uuid
   matrix      Matrix      @relation(fields: [matrixId], references: [id], onDelete: Cascade)
   name        String      @db.VarChar(64)
@@ -62,7 +62,7 @@ model Column {
 }
 
 model Value {
-  id          String      @default(uuid()) @db.Uuid
+  id          String      @unique @default(uuid()) @db.Uuid
   matrixId    String      @db.Uuid
   matrix      Matrix      @relation(fields: [matrixId], references: [id], onDelete: Cascade)
   name        String      @db.VarChar(64)

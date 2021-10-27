@@ -8,3 +8,12 @@ export interface CreateCellEntryInput {
 	rowId: string;
 	valueId: string;
 }
+
+export interface UpdateCellEntryInput {
+	id: string;
+	valueId?: string;
+}
+
+export interface DeleteCellEntryInput {
+	id: string;
+}

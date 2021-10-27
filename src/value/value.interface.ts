@@ -15,3 +15,13 @@ export interface CreateValueInMatrixInput {
 	name: string;
 	color: string;
 }
+
+export interface UpdateValueInput {
+	id: string;
+	name?: string;
+	color?: string;
+}
+
+export interface DeleteValueInput {
+	id: string;
+}

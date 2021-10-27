@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import {prisma} from '../database';
-import {Value, CreateValueInput} from './value.interface';
+import {Value, CreateValueInput, UpdateValueInput, DeleteValueInput} from './value.interface';
 
 export const valueResolvers = {
 	Value: {
@@ -24,5 +24,10 @@ export const valueResolvers = {
 				},
 			},
 		}),
+		updateValue: (parent, {id, name, color}: UpdateValueInput) => prisma.value.update({
+			where: {id},
+			data: {name, color},
+		}),
+		deleteValue: (parent, {id}: DeleteValueInput) => prisma.value.delete({where: {id}}),
 	},
 };

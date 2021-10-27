@@ -12,3 +12,12 @@ export interface CreateRowInput {
 export interface CreateRowInMatrixInput {
 	name: string;
 }
+
+export interface UpdateRowInput {
+	id: string;
+	name?: string;
+}
+
+export interface DeleteRowInput {
+	id: string;
+}

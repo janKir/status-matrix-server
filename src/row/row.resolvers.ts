@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import {prisma} from '../database';
-import {CreateRowInput, Row} from './row.interface';
+import {CreateRowInput, DeleteRowInput, Row, UpdateRowInput} from './row.interface';
 
 export const rowResolvers = {
 	Row: {
 		id: ({id}: Row) => id,
 		name: ({name}: Row) => name,
-		matrix: ({id, matrixId}: Row) => prisma.row.findUnique({where: {id_matrixId: {id, matrixId}}}).matrix(),
-		cellEntries: ({id, matrixId}: Row) => prisma.row.findUnique({where: {id_matrixId: {id, matrixId}}}).cellEntries(),
+		matrix: ({id}: Row) => prisma.row.findUnique({where: {id}}).matrix(),
+		cellEntries: ({id}: Row) => prisma.row.findUnique({where: {id}}).cellEntries(),
 	},
 	Query: {
 		rows: () => prisma.row.findMany(),
@@ -22,6 +22,11 @@ export const rowResolvers = {
 				},
 			},
 		}),
+		updateRow: (parent, {id, name}: UpdateRowInput) => prisma.row.update({
+			where: {id},
+			data: {name},
+		}),
+		deleteRow: (parent, {id}: DeleteRowInput) => prisma.row.delete({where: {id}}),
 	},
 };
 

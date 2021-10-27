@@ -22,5 +22,7 @@ export const columnTypeDef = gql`
 
   extend type Mutation {
     createColumn(matrixId: ID!, name: String!): Column!
+    updateColumn(id: ID!, name: String): Column!
+    deleteColumn(id: ID!): Column!
   }
 `;
