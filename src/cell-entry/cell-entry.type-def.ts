@@ -12,6 +12,7 @@ export const cellEntryTypeDef = gql`
   extend type Query {
     cellEntries: [CellEntry!]!
     cellEntry(id: ID!): CellEntry
+    cellEntryByMatrix(matrixId: ID!, rowId: ID!, columnId: ID!): CellEntry
   }
 
   extend type Mutation {

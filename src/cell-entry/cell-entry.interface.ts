@@ -2,6 +2,12 @@ export interface CellEntry {
 	id: string;
 }
 
+export interface CellEntryByMatrixInput {
+	matrixId: string;
+	rowId: string;
+	columnId: string;
+}
+
 export interface CreateCellEntryInput {
 	matrixId: string;
 	columnId: string;
