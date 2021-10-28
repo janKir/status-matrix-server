@@ -5,6 +5,10 @@ export interface Value {
 	color: string;
 }
 
+export interface ValuesByMatrixInput {
+	matrixId: string;
+}
+
 export interface CreateValueInput {
 	matrixId: string;
 	name: string;

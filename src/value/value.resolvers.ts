@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import {prisma} from '../database';
-import {Value, CreateValueInput, UpdateValueInput, DeleteValueInput} from './value.interface';
+import {Value, CreateValueInput, UpdateValueInput, DeleteValueInput, ValuesByMatrixInput} from './value.interface';
 
 export const valueResolvers = {
 	Value: {
@@ -13,6 +13,7 @@ export const valueResolvers = {
 	Query: {
 		values: () => prisma.value.findMany(),
 		value: (parent, {id}: Value) => prisma.value.findFirst({where: {id}}),
+		valuesByMatrix: (parent, {matrixId}: ValuesByMatrixInput) => prisma.value.findMany({where: {matrixId}}),
 	},
 	Mutation: {
 		createValue: (parent, {name, color, matrixId}: CreateValueInput) => prisma.value.create({

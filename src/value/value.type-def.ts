@@ -17,6 +17,7 @@ export const valueTypeDef = gql`
   extend type Query {
     values: [Value!]!
     value(id: ID!): Value
+    valuesByMatrix(matrixId: ID!): [Value!]!
   }
 
   extend type Mutation {
