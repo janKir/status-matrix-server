@@ -23,3 +23,10 @@ export interface UpdateCellEntryInput {
 export interface DeleteCellEntryInput {
 	id: string;
 }
+
+export interface SetValueForCellInput {
+	matrixId: string;
+	rowId: string;
+	columnId: string;
+	valueId?: string;
+}

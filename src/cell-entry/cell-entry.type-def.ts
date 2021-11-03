@@ -6,7 +6,7 @@ export const cellEntryTypeDef = gql`
     matrix: Matrix!
     row: Row!
     column: Column!
-    value: Value!
+    value: Value
   }
 
   extend type Query {
@@ -19,6 +19,7 @@ export const cellEntryTypeDef = gql`
     createCellEntry(matrixId: ID!, rowId: ID!, columnId: ID!, valueId: ID!): CellEntry!
     updateCellEntry(id: ID!, valueId: String): CellEntry!
     deleteCellEntry(id: ID!): CellEntry!
+    setValueForCell(matrixId: ID!, rowId: ID!, columnId: ID!, valueId: ID): CellEntry
   }
 `;
 
